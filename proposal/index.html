@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Proposal for 7 Lyons Media · Station.Solutions</title>
+<meta name="description" content="Station's proposal for 7 Lyons Media: the new website, what we found on the current one, and the plan to launch.">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
+<style>
+/* A proposal is a document: white paper, black type, the new site's cyan used sparingly.
+   Headings in Archivo at its narrowest (the same face as the new site); reading in Newsreader; labels in DM Mono. */
+:root{
+  --paper:#FFFFFF;--paper-2:#F4F5F7;--ink:#0B0B0D;--ink-2:#4A4F57;--ink-3:#747A83;
+  --line:#E3E5E9;--line-2:#C9CDD3;--cyan:#008FB5;--cyan-bg:#E3F6FC;--red:#C0263A;--red-bg:#FCEBEE;--amber:#8A5A00;--amber-bg:#FFF3D9;--green:#1E7A4C;--green-bg:#E4F5EC;
+  --room:#09090B;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;--read:"Newsreader",Georgia,serif;--mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(16px,4vw,48px);--max:1060px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18.5px/1.6 var(--read);-webkit-font-smoothing:antialiased}
+a{color:var(--cyan)}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.label{font:500 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+h1,h2,h3{font-family:var(--display);font-stretch:62%;font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:.005em;margin:0;text-wrap:balance}
+h2{font-size:clamp(36px,4.6vw,58px);margin-bottom:18px}
+h3{font-size:clamp(22px,2vw,28px);margin-bottom:8px}
+p{margin:0 0 14px;max-width:66ch}
+section{padding-block:clamp(56px,7vw,88px) 0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* cover */
+.cover{background:var(--room);color:#EEF0F2;padding-block:clamp(40px,6vw,72px) clamp(44px,6vw,72px)}
+.cover .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(40px,7vw,80px)}
+.cover .top .label{color:#9AA1AB}
+.brand{display:flex;align-items:center;gap:12px;font:600 12px/1 var(--display);font-stretch:125%;letter-spacing:.34em;text-transform:uppercase;color:#EEF0F2;text-decoration:none}
+.brand img{width:40px;height:40px}
+.cover h1{font-size:clamp(52px,8.4vw,112px);color:#EEF0F2}
+.cover h1 span{color:transparent;-webkit-text-stroke:1.5px #EEF0F2}
+.cover p{color:#AEB4BD;font-size:clamp(19px,1.7vw,22px);margin-top:22px;max-width:52ch}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:clamp(36px,5vw,56px);border-top:1px solid rgba(238,240,242,.2);padding-top:18px}
+.meta div span{display:block}
+.meta .label{color:#80878F;margin-bottom:6px}
+.meta b{font:600 15px/1.35 var(--display);color:#EEF0F2}
+@media (max-width:700px){.meta{grid-template-columns:1fr 1fr}}
+
+/* contents */
+.toc{display:flex;flex-wrap:wrap;gap:8px;padding-block:22px;border-bottom:1px solid var(--line)}
+.toc a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line-2);border-radius:999px;font:600 14px/1 var(--display);color:var(--ink);text-decoration:none}
+.toc a:hover{border-color:var(--ink)}
+
+/* summary */
+.summary{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.total{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:24px}
+.total .big{font:800 clamp(44px,5vw,64px)/1 var(--display);font-stretch:62%;display:block;margin:6px 0 4px}
+.total .sub{font:500 15px/1.4 var(--mono);color:var(--ink-2)}
+.total ul{margin:16px 0 0;padding-left:18px;font-size:16px;color:var(--ink-2)}
+@media (max-width:800px){.summary{grid-template-columns:1fr}}
+
+/* the site, embedded */
+.screen{margin-top:22px;border-radius:12px;overflow:hidden;background:var(--room);box-shadow:0 30px 60px -20px rgba(9,9,11,.45),0 0 0 1px rgba(9,9,11,.08)}
+.chrome{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#1B1C21;color:#AEB4BD;font:500 12px/1 var(--mono)}
+.dots{display:flex;gap:6px}.dots i{width:11px;height:11px;border-radius:50%;background:#3A3C44}
+.url{flex:1;min-width:0;background:#0F1014;border-radius:6px;padding:8px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chrome a{color:#EEF0F2;text-decoration:none;border:1px solid #3A3C44;border-radius:6px;padding:7px 10px;white-space:nowrap}
+.screen iframe{display:block;width:100%;height:min(78vh,760px);border:0;background:var(--room)}
+.open-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;font:700 15px/1 var(--display);text-decoration:none;border:1.5px solid var(--ink);color:var(--ink)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn:hover{opacity:.88}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:620px}
+th{text-align:left;font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:var(--paper-2);padding:12px 16px;border-bottom:1px solid var(--line)}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td b{font-family:var(--display);font-weight:700}
+.pill{display:inline-block;padding:4px 9px;border-radius:999px;font:500 12px/1.2 var(--mono);letter-spacing:.04em;white-space:nowrap}
+.ok{background:var(--green-bg);color:var(--green)}
+.ask{background:var(--amber-bg);color:var(--amber)}
+.bad{background:var(--red-bg);color:var(--red)}
+.info{background:var(--cyan-bg);color:#006B88}
+
+/* findings */
+.findings{display:grid;gap:12px}
+.finding{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:10px}
+.finding.first{border-color:var(--red);background:linear-gradient(0deg,var(--red-bg),var(--red-bg))}
+.finding h3{font-size:22px;margin:0 0 6px}
+.finding p{margin:0;font-size:17px;color:var(--ink-2)}
+.finding .evidence{display:block;margin-top:8px;font:400 13px/1.5 var(--mono);color:var(--ink-3)}
+@media (max-width:640px){.finding{grid-template-columns:1fr;gap:8px}}
+
+/* scope */
+.scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:10px;padding:22px}
+.card ul{margin:10px 0 0;padding-left:18px;font-size:16px;color:var(--ink-2)}
+.card li{margin-bottom:4px}
+.card .price{float:right;font:700 18px/1 var(--mono);color:var(--ink)}
+@media (max-width:760px){.scope{grid-template-columns:1fr}}
+
+/* price */
+.price-tbl td:last-child,.price-tbl th:last-child{text-align:right;white-space:nowrap}
+.price-tbl tfoot td{font:700 17px/1.3 var(--display);background:var(--paper-2);border-top:2px solid var(--ink)}
+
+/* timeline */
+.steps{list-style:none;margin:0;padding:0;border-left:2px solid var(--line-2)}
+.steps li{position:relative;padding:0 0 22px 24px}
+.steps li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.steps b{font:700 17px/1.3 var(--display);display:block}
+.steps span{font-size:16px;color:var(--ink-2)}
+
+/* need */
+.need{columns:2 320px;column-gap:28px;padding-left:20px}
+.need li{break-inside:avoid;margin-bottom:10px;font-size:17px}
+
+/* yes */
+.yes{margin-top:clamp(56px,7vw,88px);background:var(--room);color:#EEF0F2;padding-block:clamp(48px,6vw,72px)}
+.yes h2{color:#EEF0F2}
+.yes p{color:#AEB4BD}
+.yes .btn{border-color:#EEF0F2;color:#EEF0F2}
+.yes .btn-ink{background:#EEF0F2;color:var(--room)}
+footer{padding-block:28px;font:400 13px/1.6 var(--mono);color:var(--ink-3);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+@media print{.toc,.open-row,.screen iframe{display:none}.cover,.yes{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="../" aria-label="Open the new 7 Lyons Media website"><img src="../img/lion.png" alt="" width="40" height="40">7 Lyons Media</a>
+      <span class="label">Proposal &middot; prepared by Station.Solutions</span>
+    </div>
+    <h1>A website as good<br><span>as your work.</span></h1>
+    <p>Sofia and Jay, this is everything in one place: the new site we built from Sofia&rsquo;s brief, what we found on the current one, and exactly what it takes to launch before the Microsoft visit.</p>
+    <div class="meta">
+      <div><span class="label">Prepared for</span><b>Sofia J. Lyons &amp; Jay Lyons</b></div>
+      <div><span class="label">Prepared by</span><b>Station.Solutions</b></div>
+      <div><span class="label">Date</span><b>28 September 2026</b></div>
+      <div><span class="label">Valid until</span><b>28 October 2026</b></div>
+    </div>
+  </div>
+</header>
+
+<nav class="wrap toc" aria-label="Contents">
+  <a href="#summary">Summary</a><a href="#site">See the site</a><a href="#asked">What you asked for</a><a href="#found">What we found</a><a href="#plan">The plan</a><a href="#price">Investment</a><a href="#when">Timeline</a><a href="#need">What we need</a>
+</nav>
+
+<main>
+<section id="summary" aria-labelledby="sum-h">
+  <div class="wrap summary">
+    <div>
+      <span class="label">The short version</span>
+      <h2 id="sum-h">Your work is world class. Your website hides it.</h2>
+      <p>Netflix, Spotify, TLC, MTV, TV One, 69 million views on one short documentary and a feature film in development, and none of the last three years is on your website. The current site also has a problem you can&rsquo;t see: hidden spam links were planted on some of its pages years ago, and they are still there today.</p>
+      <p>We have already built the replacement. It is live below as a private preview. What&rsquo;s left is to finish it with your answers, clean up the old site, fix your email, and put the new one on 7lyonsmedia.com.</p>
+    </div>
+    <aside class="total" aria-label="Total">
+      <span class="label">Total to launch</span>
+      <span class="big num">$3,049</span>
+      <span class="sub">one time, then $50/month hosting &amp; care</span>
+      <ul>
+        <li>New website, launched on your domain</li>
+        <li>Old site cleaned up and retired</li>
+        <li>Email fixed so it stops landing in spam</li>
+        <li>Google Business Profile and search set up</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section id="site" aria-labelledby="site-h">
+  <div class="wrap">
+    <span class="label">Already built &middot; private preview</span>
+    <h2 id="site-h">See the new site</h2>
+    <p>Scroll it right here, or open it full screen. Press play on any picture to watch a clip with sound. It is hidden from Google until launch.</p>
+    <div class="screen">
+      <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">7lyonsmedia.com &middot; preview</span><a href="../" target="_blank" rel="noopener">Open full screen &#8599;</a></div>
+      <iframe src="../" title="Preview of the new 7 Lyons Media website" loading="lazy"></iframe>
+    </div>
+    <div class="open-row">
+      <a class="btn btn-ink" href="../" target="_blank" rel="noopener">Open the new site</a>
+      <a class="btn" href="#asked">Check it against the brief</a>
+    </div>
+  </div>
+</section>
+
+<section id="asked" aria-labelledby="asked-h">
+  <div class="wrap">
+    <span class="label">Sofia&rsquo;s brief, 14 September</span>
+    <h2 id="asked-h">Everything you asked for</h2>
+    <p>Every point from the brief, and where it lives on the new site. The amber ones need a quick answer from you before launch.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th scope="col">You said</th><th scope="col">On the new site</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>Keep the reel at the top. It gets to the point quickly.</td><td>The reel plays behind the headline. Phones get a lighter vertical cut. &ldquo;Play the reel with sound&rdquo; opens the full reel.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>Keep the logos of the companies you&rsquo;ve worked with</td><td>Netflix, Discovery, Spotify, YouTube, Viacom, Prime Video, TLC, CBS, AwesomenessTV and TV One, in a scrolling strip.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>Keep the colour scheme</td><td>Black and white, with the cyan from the lion logo.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>Easy scrolling on a phone, but top clients came on a laptop</td><td>Designed for laptops first, then tested on phones: menu, finger-sized buttons, nothing runs off the screen.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>Not near enough about your success with social</td><td>A whole section: 0 to 1.5M followers for a current client, 69M views, and 253K subscribers on Lyon Bros.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>The consulting pages have to be redone</td><td>New &ldquo;Consulting for marketing &amp; media teams&rdquo; section: the creative, and under the hood (analytics).</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>A one-time &ldquo;basics&rdquo; package or AI agents, still deciding</td><td>A &ldquo;The Basics, in the works&rdquo; spot that sends people to the mailing list until you decide.</td><td><span class="pill ask">Your call</span></td></tr>
+          <tr><td>Corporate consulting: HarperCollins, Goji Mobile, soon Microsoft</td><td>Left off on purpose until you tell us in writing that you can name them. Microsoft stays off until they are a client.</td><td><span class="pill ask">Need OK</span></td></tr>
+          <tr><td>The Hollywood film for The Professor</td><td>&ldquo;In development&rdquo; section: director Deon Taylor, screenplay Brad Gann, Jay producing, with the Variety link.</td><td><span class="pill ask">Need OK</span></td></tr>
+          <tr><td>The 0 to 1.5 million client</td><td>On the social section, with the client not named.</td><td><span class="pill ask">Name them?</span></td></tr>
+          <tr><td>Show the work properly</td><td>Eight projects, each with its own credits and a clip you can play with sound, plus links to the full pieces.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>Bring in enquiries</td><td>&ldquo;Start a project&rdquo; form: project, speaking or other.</td><td><span class="pill info">Wired at launch</span></td></tr>
+          <tr><td>Let people book time without emailing back and forth</td><td>Speaking requests ask for preferred dates, so you reply once with what is open. A live calendar gets connected at launch.</td><td><span class="pill info">Wired at launch</span></td></tr>
+          <tr><td>Too busy for free consults</td><td>No free-consult button anywhere. The FAQ says so politely and points to the free tools instead.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>Free expertise to build a mailing list</td><td>&ldquo;Jay&rsquo;s notes&rdquo; email sign-up, plus the quiz below that ends in it.</td><td><span class="pill info">Wired at launch</span></td></tr>
+          <tr><td>A place to book Jay to speak or train</td><td>&ldquo;Book Jay to speak or train your team&rdquo;: topics, formats and a Request dates button.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>&ldquo;I don&rsquo;t know what I need, can you help me figure it out?&rdquo; (A BIG ONE)</td><td>A three-question quiz that gives a straight answer on the page, with no call needed.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>How much will this cost? How long to go viral?</td><td>Answered in the FAQ, honestly: scoped per project, and nobody can promise viral.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>You&rsquo;re a &ldquo;tweener&rdquo;: creative production, social, film, original music</td><td>&ldquo;We&rsquo;re a tweener.&rdquo; section in your own words, with original music named in the headline line.</td><td><span class="pill ok">Done</span></td></tr>
+          <tr><td>Microsoft wants you to train. The site must look as successful as the last 3 years</td><td>Work first, verified numbers, the film credit from Variety. The launch is timed to your visit.</td><td><span class="pill ask">Visit date?</span></td></tr>
+          <tr><td>Emails land in spam, senders get error messages</td><td>Not a website fix, so it is its own line in the plan below.</td><td><span class="pill info">In the plan</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="found" aria-labelledby="found-h">
+  <div class="wrap">
+    <span class="label">Audit of 7lyonsmedia.com &middot; 8 &amp; 16 September, re-checked 28 September</span>
+    <h2 id="found-h">What we found on the current site</h2>
+    <p>Everything below was checked on the live site. None of it is anyone&rsquo;s fault: most of it is the kind of thing that quietly builds up on a WordPress site that was set up years ago and then left to run.</p>
+    <div class="findings">
+      <div class="finding first"><span class="pill bad">Fix first</span><div><h3>Hidden spam links on your pages</h3><p>At some point, probably around March 2021, someone added spam to the old site: over a hundred hidden links to pharmacy, casino, essay-writing and escort sites, on 7 of your 13 pages. Most are invisible to visitors, but Google sees them, and some text shows up inside your privacy policy. The pages clients normally visit (home, about, reel, contact) are clean. With Microsoft looking, this is the first thing we fix.</p><span class="evidence">Full count 16 Sep: 111 links to 21 spam domains across 7 pages &middot; re-checked 28 Sep: still on the privacy policy, in hidden widget &ldquo;custom_html-2&rdquo;</span></div></div>
+      <div class="finding"><span class="pill bad">Broken</span><div><h3>&ldquo;Book a consultation&rdquo; doesn&rsquo;t open</h3><p>The main button leads to a private Typeform, so anyone who clicks sees &ldquo;you can&rsquo;t access this typeform until its creator says so.&rdquo;</p><span class="evidence">Still private on 28 Sep</span></div></div>
+      <div class="finding"><span class="pill bad">Email</span><div><h3>Why your email lands in spam</h3><p>Your domain is missing two standard email security records that Gmail and Outlook check to trust your mail (called DKIM and DMARC). That fits &ldquo;lands in spam&rdquo; exactly. For the error messages, one forwarded bounce will tell us the exact cause.</p><span class="evidence">28 Sep: no DMARC record &middot; no DKIM key found &middot; SPF present</span></div></div>
+      <div class="finding"><span class="pill ask">Visibility</span><div><h3>No Google Business Profile</h3><p>When someone searches for a production company in Los Angeles, Google shows a map and a list. You aren&rsquo;t on it. The top 20 there have 531 reviews between them.</p></div></div>
+      <div class="finding"><span class="pill ask">Numbers</span><div><h3>Your site undersells you</h3><p>It says Professor Goes To Prison has 48 or 61 million views. YouTube says 69,013,903. It says Lyon Bros has 40M views; the channel shows about 59.5M. AI search tools quote the old, lower numbers.</p></div></div>
+      <div class="finding"><span class="pill ask">Speed</span><div><h3>The homepage loads almost 200 MB of video</h3><p>Including a 98 MB .mov file. On a normal connection that is about 46 seconds. The new site&rsquo;s whole reel is 12.5 MB, and phones get a 3.9 MB version.</p></div></div>
+      <div class="finding"><span class="pill ask">Security</span><div><h3>Old logins are visible</h3><p>Anyone can see the three WordPress usernames (Jay&rsquo;s and two past builders), and the login page is open. Worth closing even if you keep nothing else.</p></div></div>
+      <div class="finding"><span class="pill info">Search</span><div><h3>Small things Google notices</h3><p>No page descriptions, no main headline on the homepage, test pages (&ldquo;sample page&rdquo;, &ldquo;test&rdquo;) listed for Google to index, no link-preview images, no analytics, and no links to your own social accounts. The new site fixes all of these.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="plan" aria-labelledby="plan-h">
+  <div class="wrap">
+    <span class="label">Scope</span>
+    <h2 id="plan-h">The plan</h2>
+    <div class="scope">
+      <div class="card"><span class="price num">$2,500</span><h3>1. Launch the new website</h3><ul>
+        <li>Finish it with your answers: names, film, client, the Basics</li>
+        <li>Connect the project form and &ldquo;Jay&rsquo;s notes&rdquo; sign-up so every enquiry and subscriber reaches you</li>
+        <li>A live booking calendar for speaking and training</li>
+        <li>Move it onto 7lyonsmedia.com, off the old GoDaddy hosting</li>
+        <li>Google Search Console, sitemap, business details for search, analytics</li>
+        <li>Create and verify your Google Business Profile</li>
+      </ul></div>
+      <div class="card"><span class="price num">$349</span><h3>2. Clean up the old site</h3><ul>
+        <li>Remove the spam pages and the hidden widget</li>
+        <li>Point every old address at the right new page, so no links break</li>
+        <li>Ask Google to drop the spam pages and clear the cached copies</li>
+        <li>Close the old WordPress logins, then retire WordPress for good</li>
+      </ul></div>
+      <div class="card"><span class="price num">$200</span><h3>3. Fix your email</h3><ul>
+        <li>Add the missing DKIM and DMARC records and tidy SPF</li>
+        <li>Find the cause of the error messages from one forwarded bounce</li>
+        <li>Test that mail to and from sofia@ lands in the inbox</li>
+      </ul></div>
+      <div class="card"><span class="price num">$50/mo</span><h3>4. Hosting &amp; care</h3><ul>
+        <li>Fast hosting and your domain renewal, handled</li>
+        <li>Upkeep and security, so nothing like the spam happens again</li>
+        <li>One small update a month (a new project, a new number)</li>
+        <li>Bigger changes quoted first. If you ever cancel, we hand the site and domain over to you</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="price" aria-labelledby="price-h">
+  <div class="wrap">
+    <span class="label">Investment</span>
+    <h2 id="price-h">What it costs</h2>
+    <div class="tbl-wrap">
+      <table class="price-tbl">
+        <thead><tr><th scope="col">Item</th><th scope="col">When</th><th scope="col">Price</th></tr></thead>
+        <tbody>
+          <tr><td><b>Launch the new website</b></td><td>One time</td><td class="num">$2,500</td></tr>
+          <tr><td><b>Clean up the old site</b></td><td>One time</td><td class="num">$349</td></tr>
+          <tr><td><b>Fix your email</b></td><td>One time</td><td class="num">$200</td></tr>
+          <tr><td><b>Hosting &amp; care</b></td><td>Monthly, from launch</td><td class="num">$50/mo</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total to launch</td><td>Half to start, half at launch</td><td class="num">$3,049</td></tr></tfoot>
+      </table>
+    </div>
+    <p style="margin-top:14px;font-size:16px;color:var(--ink-2)">No setup fees and nothing hidden. The design you see in the preview is included in the launch price.</p>
+  </div>
+</section>
+
+<section id="when" aria-labelledby="when-h">
+  <div class="wrap">
+    <span class="label">Timeline</span>
+    <h2 id="when-h">About two weeks, timed to Microsoft</h2>
+    <ol class="steps">
+      <li><b>Day 1 &middot; You say yes</b><span>We send the first invoice and a short list of questions (below).</span></li>
+      <li><b>Days 1&ndash;3 &middot; Stop the spam</b><span>Clean-up starts straight away, before anything else, so Microsoft never sees it.</span></li>
+      <li><b>Days 2&ndash;5 &middot; Email fixed</b><span>DNS records added and tested once we have the domain login.</span></li>
+      <li><b>Days 3&ndash;10 &middot; Finish the site</b><span>Your answers go in, forms and calendar get connected, and you review it.</span></li>
+      <li><b>Days 10&ndash;14 &middot; Launch</b><span>7lyonsmedia.com switches to the new site, Google gets notified, and the Business Profile goes in for verification.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="need" aria-labelledby="need-h">
+  <div class="wrap">
+    <span class="label">From you</span>
+    <h2 id="need-h">What we need</h2>
+    <ul class="need">
+      <li><b>When is the Microsoft visit?</b> That sets the launch date.</li>
+      <li>Can we name the <b>0 to 1.5M client</b>, with numbers, or is it private?</li>
+      <li>Written OK to name <b>HarperCollins</b> and <b>Goji Mobile</b>.</li>
+      <li>OK to show <b>The Professor feature</b> in development.</li>
+      <li>Is &ldquo;<b>Sofia J</b>&rdquo; in The Long Goodbye&rsquo;s music credits you? The site says your music is on it.</li>
+      <li>The <b>Emmy</b> categories and years, if you want them on the site. We left them off until we can cite them.</li>
+      <li>Jay&rsquo;s <b>speaking fee and formats</b>, and a calendar he&rsquo;s happy to share.</li>
+      <li>Confirmation that you can show the <b>TLC, MTV and TV One clips</b> on your own site.</li>
+      <li>Logins for <b>GoDaddy</b> (domain and hosting), <b>Cloudflare</b>, and your <b>email admin</b>. We walk you through sharing them safely.</li>
+      <li>One <b>bounced email</b>, forwarded, so we can see the error people get.</li>
+      <li>Your <b>legal business name</b> for the invoice.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="yes" aria-labelledby="yes-h">
+  <div class="wrap">
+    <h2 id="yes-h">Ready when you are</h2>
+    <p>Reply to the email this came with and we&rsquo;ll start with the clean-up the same day. Want changes to the design first? Tell us what, and we&rsquo;ll make them before you decide.</p>
+    <div class="open-row">
+      <a class="btn btn-ink" href="../" target="_blank" rel="noopener">Open the new site</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="wrap"><footer><span>Station.Solutions &middot; proposal for 7 Lyons Media &middot; 28 September 2026 &middot; valid for 30 days</span><span>Private preview. Not indexed by search engines.</span></footer></div>
+</body>
+</html>
