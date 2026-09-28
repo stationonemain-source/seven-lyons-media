@@ -87,12 +87,23 @@ a{color:inherit}
   @keyframes rise{from{transform:translateY(28px)}to{transform:none}}
 }
 
-/* networks plaque */
+/* networks marquee: their logos as white knockouts, one endless loop, edges fade into the room */
 .aired{padding-block:clamp(48px,7vw,88px) 0}
-.aired .wrap{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center}
-.plaque{background:var(--plaque);border-radius:6px;padding:clamp(14px,2.2vw,26px) clamp(16px,3vw,40px)}
-.plaque img{width:100%;height:auto}
-@media (max-width:760px){.aired .wrap{grid-template-columns:1fr;gap:14px}}
+.aired .slate{display:block;margin-bottom:22px}
+.marquee{--gap:clamp(56px,6vw,104px);--dur:46s;display:flex;gap:var(--gap);overflow:hidden;padding-block:30px;border-block:1px solid var(--line);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+.track{display:flex;align-items:center;justify-content:space-around;gap:var(--gap);flex-shrink:0;min-width:100%;margin:0;padding:0;list-style:none;animation:marquee var(--dur) linear infinite}
+.track li{flex-shrink:0;display:flex;align-items:center}
+.track img{height:var(--h);width:auto;opacity:.58;transition:opacity .3s}
+.track li:hover img{opacity:1}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(calc(-100% - var(--gap)))}}
+@media (max-width:640px){.marquee{--dur:34s}.track img{height:calc(var(--h) * .72)}}
+@media (prefers-reduced-motion:reduce){
+  .marquee{-webkit-mask-image:none;mask-image:none;flex-wrap:wrap;justify-content:center}
+  .track{animation:none;flex-wrap:wrap;justify-content:center;row-gap:28px;min-width:0;padding-inline:var(--gut)}
+  .track[aria-hidden="true"]{display:none}
+}
 
 /* section heads */
 .shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;margin-bottom:clamp(28px,4vw,48px)}
@@ -230,7 +241,8 @@ textarea{min-height:130px;resize:vertical}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan)}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
 .seg input{position:absolute;opacity:0;width:1px;height:1px}
-.seg label{font:500 14px/1 var(--display);letter-spacing:.02em;text-transform:none;color:var(--fg-2);border:1px solid var(--line-2);border-radius:999px;padding:11px 16px;cursor:pointer}
+.seg label{display:inline-flex;align-items:center;justify-content:center;gap:0;min-height:44px;padding:0 18px;font:500 14px/1 var(--display);letter-spacing:.02em;text-transform:none;color:var(--fg-2);border:1px solid var(--line-2);border-radius:999px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.seg label:hover{border-color:var(--fg);color:var(--fg)}
 .seg input:checked + label{background:var(--fg);color:var(--ink);border-color:var(--fg)}
 .seg input:focus-visible + label{outline:2px solid var(--cyan);outline-offset:3px}
 .form-note{font-size:15px;color:var(--fg-2);margin:0;min-height:1.5em}
@@ -295,10 +307,33 @@ footer{margin-top:clamp(88px,10vw,140px);border-top:1px solid var(--line);paddin
   </div>
 </section>
 
-<section class="aired" aria-label="Networks and platforms">
-  <div class="wrap">
-    <span class="slate">Our work has run on</span>
-    <div class="plaque"><img src="img/networks.webp" alt="Netflix, Spotify, YouTube, Viacom, Prime Video, TLC, CBS, MTV, Discovery, AwesomenessTV and TV One" width="2200" height="385"></div>
+<section class="aired" aria-labelledby="aired-h">
+  <div class="wrap"><span class="slate" id="aired-h">Our work has run on</span></div>
+  <div class="marquee">
+    <ul class="track">
+        <li><img src="img/logos/netflix.png" alt="Netflix" width="57" height="56" style="--h:56px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/discovery.png" alt="Discovery Channel" width="153" height="33" style="--h:33px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/spotify.png" alt="Spotify" width="68" height="52" style="--h:52px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/youtube.png" alt="YouTube" width="151" height="34" style="--h:34px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/viacom.png" alt="Viacom" width="159" height="25" style="--h:25px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/prime-video.png" alt="Prime Video" width="128" height="40" style="--h:40px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/tlc.png" alt="TLC" width="82" height="42" style="--h:42px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/cbs.png" alt="CBS" width="123" height="38" style="--h:38px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/awesomenesstv.png" alt="AwesomenessTV" width="210" height="26" style="--h:26px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/tv-one.png" alt="TV One" width="112" height="44" style="--h:44px" loading="lazy" decoding="async"></li>
+    </ul>
+    <ul class="track" aria-hidden="true">
+        <li><img src="img/logos/netflix.png" alt="" width="57" height="56" style="--h:56px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/discovery.png" alt="" width="153" height="33" style="--h:33px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/spotify.png" alt="" width="68" height="52" style="--h:52px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/youtube.png" alt="" width="151" height="34" style="--h:34px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/viacom.png" alt="" width="159" height="25" style="--h:25px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/prime-video.png" alt="" width="128" height="40" style="--h:40px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/tlc.png" alt="" width="82" height="42" style="--h:42px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/cbs.png" alt="" width="123" height="38" style="--h:38px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/awesomenesstv.png" alt="" width="210" height="26" style="--h:26px" loading="lazy" decoding="async"></li>
+        <li><img src="img/logos/tv-one.png" alt="" width="112" height="44" style="--h:44px" loading="lazy" decoding="async"></li>
+    </ul>
   </div>
 </section>
 
