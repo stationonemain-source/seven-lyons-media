@@ -7,6 +7,8 @@
 <style>[hidden]{display:none!important}</style>
 <title>7 Lyons Media</title>
 <meta name="description" content="7 Lyons Media is a boutique production company in Los Angeles making television, film and social: The Long Goodbye, Professor Goes To Prison, Music Happens Here.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=DM+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
@@ -33,6 +35,8 @@
   --mono:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
   --gut:clamp(16px,4vw,56px);
   --max:1360px;
+  --h-sec:clamp(38px,4.6vw,68px);
+  --h-card:clamp(26px,2.4vw,36px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -49,13 +53,16 @@ a{color:inherit}
 
 /* header */
 .top{position:fixed;inset:0 0 auto 0;z-index:40;padding-top:env(safe-area-inset-top,0px);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.top::before{content:"";position:absolute;inset:0 0 -48px 0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(9,9,11,.82) 0%,rgba(9,9,11,.45) 55%,rgba(9,9,11,0) 100%);transition:opacity .3s}
+.top.solid::before{opacity:0}
 .top.solid{background:rgba(9,9,11,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
 .top .wrap{display:flex;align-items:center;gap:24px;height:68px}
 .brand{display:flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;margin-right:auto}
-.brand img{width:34px;height:34px}
+.brand img{width:40px;height:40px}
 .brand span{font-size:12px;letter-spacing:.42em}
 .nav{display:flex;gap:26px;list-style:none;margin:0;padding:0}
-.nav a{font:500 14px/1 var(--display);font-stretch:100%;text-decoration:none;color:var(--fg-2);letter-spacing:.02em}
+.nav a{font:500 14px/1 var(--display);font-stretch:100%;text-decoration:none;color:var(--fg);letter-spacing:.02em;opacity:.86}
+.nav a:hover{opacity:1}
 .nav a:hover{color:var(--fg)}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;gap:10px;font:600 14px/1 var(--display);letter-spacing:.04em;text-decoration:none;border-radius:999px;padding:13px 20px;border:1px solid var(--line-2);color:var(--fg);background:transparent;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
 .btn:hover{border-color:var(--fg)}
@@ -69,6 +76,8 @@ a{color:inherit}
 .menu a{font:800 44px/1.05 var(--display);font-stretch:62%;text-transform:uppercase;text-decoration:none;color:var(--fg);padding-block:6px}
 .menu a:hover{color:var(--cyan)}
 .menu .btn{margin-top:24px;align-self:flex-start;font:600 16px/1 var(--display);text-transform:none;padding:14px 22px}
+.menu a.btn-hot{color:var(--ink)}
+.menu a.btn-hot:hover{color:var(--ink)}
 .menu-close{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:var(--gut);z-index:61}
 @media (max-width:900px){.nav{display:none}.menu-btn{display:inline-flex}}
 @media (max-width:480px){.top .btn-hot{display:none}.brand span{display:inline;font-size:11px;letter-spacing:.3em}}
@@ -87,7 +96,7 @@ a{color:inherit}
 .hero p{max-width:34ch;margin:0 0 20px;font-size:clamp(18px,1.6vw,24px);line-height:1.4;color:var(--fg)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .tc{font:500 14px/1 var(--mono);letter-spacing:.08em;color:var(--fg-2);display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums}
-.tc i{width:8px;height:8px;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 3px rgba(229,24,127,.22)}
+.tc i{width:8px;height:8px;border-radius:50%;background:var(--cyan)}
 @media (prefers-reduced-motion:no-preference){
   .hero h1 span{animation:rise 1s cubic-bezier(.2,.7,.1,1) both}
   .hero h1 .l2{animation-delay:.12s}
@@ -96,7 +105,7 @@ a{color:inherit}
 }
 
 /* networks marquee: their logos as white knockouts, one endless loop, edges fade into the room */
-.aired{padding-block:clamp(48px,7vw,88px) 0}
+.aired{padding-block:clamp(28px,4vw,48px) 0}
 .aired .slate{display:block;margin-bottom:22px}
 .marquee{--gap:clamp(56px,6vw,104px);--dur:46s;display:flex;gap:var(--gap);overflow:hidden;padding-block:30px;border-block:1px solid var(--line);
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
@@ -115,7 +124,7 @@ a{color:inherit}
 
 /* section heads */
 .shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;margin-bottom:clamp(28px,4vw,48px)}
-.shead h2{font-size:clamp(40px,6vw,88px)}
+.shead h2{font-size:var(--h-sec)}
 .shead p{max-width:44ch;margin:0;color:var(--fg-2)}
 section.band{padding-block:clamp(72px,10vw,140px) 0}
 
@@ -180,13 +189,13 @@ section.band{padding-block:clamp(72px,10vw,140px) 0}
 /* the pair */
 .pair .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px)}
 .pair .frame{aspect-ratio:16/9;border-radius:4px}
-.pair h3{font-size:clamp(32px,3.6vw,52px);margin:22px 0 10px}
+.pair h3{font-size:var(--h-card);margin:22px 0 10px}
 @media (max-width:820px){.pair .wrap{grid-template-columns:1fr}}
 
 /* in development */
 .dev{background:var(--ink-2);border-block:1px solid var(--line)}
 .dev .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,80px);padding-block:clamp(64px,8vw,112px);align-items:center}
-.dev h2{font-size:clamp(48px,7vw,112px)}
+.dev h2{font-size:clamp(40px,5.6vw,84px)}
 .dev .status{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
 .dev .status i{width:8px;height:8px;border-radius:50%;background:var(--cyan)}
 .dev p{margin:0 0 24px;color:var(--fg-2);max-width:48ch}
@@ -212,6 +221,7 @@ table.films{width:100%;border-collapse:collapse;min-width:640px}
 .peek.on{opacity:1;transform:translate(-50%,-115%) scale(1)}
 .peek img{width:100%;height:100%;object-fit:cover}
 @media (hover:none){.peek{display:none}}
+@media (max-width:700px){#index{display:none}}
 @media (max-width:700px){
   table.films{min-width:0}
   .films thead{display:none}
@@ -235,7 +245,7 @@ table.films{width:100%;border-collapse:collapse;min-width:640px}
 
 /* people */
 .people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px)}
-.person h3{font-size:clamp(40px,4.6vw,68px)}
+.person h3{font-size:var(--h-card)}
 .person .role{display:block;margin:12px 0 18px}
 .person p{margin:0 0 14px;max-width:52ch;color:var(--fg-2)}
 .bench{margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:28px}
@@ -248,8 +258,8 @@ table.films{width:100%;border-collapse:collapse;min-width:640px}
 .contact .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px)}
 @media (max-width:820px){.contact .wrap{grid-template-columns:1fr}}
 .mail code{overflow-wrap:anywhere}
-.contact h2{font-size:clamp(56px,8vw,128px)}
-.doors{display:grid;gap:14px;margin-top:28px}
+.contact h2{font-size:var(--h-sec)}
+.contact-lede{margin:22px 0 0;color:var(--fg-2);max-width:44ch}
 .door{border:1px solid var(--line-2);border-radius:6px;padding:20px 22px}
 .door h3{font:700 18px/1.2 var(--display);letter-spacing:.02em;margin:0 0 6px}
 .door p{margin:0;font-size:16px;color:var(--fg-2)}
@@ -284,13 +294,13 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 
 /* what we are */
 .stance-copy{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,80px);align-items:end}
-.stance h2{font-size:clamp(56px,9vw,136px)}
+.stance h2{font-size:var(--h-sec)}
 .stance p{margin:0;font-size:clamp(19px,1.7vw,23px);line-height:1.5;color:var(--fg-2);max-width:48ch}
 .stance p strong{color:var(--fg);font-weight:500}
 .disciplines{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--line-2)}
 .disciplines > div{padding:24px 24px 0 0}
 .disciplines > div + div{padding-left:24px;border-left:1px solid var(--line)}
-.disciplines h3{font-size:clamp(26px,2.4vw,36px);margin-bottom:10px}
+.disciplines h3{font-size:var(--h-card);margin-bottom:10px}
 .disciplines p{margin:0;font-size:16px;color:var(--fg-3)}
 @media (max-width:1000px){.disciplines{grid-template-columns:1fr 1fr}.disciplines > div:nth-child(3){padding-left:0;border-left:0}.disciplines > div:nth-child(n+3){border-top:1px solid var(--line);margin-top:24px}}
 @media (max-width:820px){.stance-copy{grid-template-columns:1fr}}
@@ -299,8 +309,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 /* social results: the figures are the point here, so they get tiles */
 .results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,24px)}
 .result-tile{background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:14px}
-.result-tile .fig{font:800 clamp(64px,7.4vw,112px)/.86 var(--display);font-stretch:62%;letter-spacing:.005em;font-variant-numeric:tabular-nums;background:linear-gradient(100deg,var(--fg) 30%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
-.result-tile .fig small{font-size:.34em;letter-spacing:.04em;margin-left:.2em;-webkit-text-fill-color:var(--fg-2)}
+.result-tile .fig{font:800 clamp(64px,7.4vw,112px)/.86 var(--display);font-stretch:62%;letter-spacing:.005em;font-variant-numeric:tabular-nums;color:var(--fg)}
+
 .result-tile h3{margin:6px 0 0;font:700 18px/1.25 var(--display);letter-spacing:.01em}
 .result-tile p{margin:0;font-size:16px;color:var(--fg-2)}
 .result-tile .slate{margin-top:auto;padding-top:10px}
@@ -309,7 +319,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 /* consulting */
 .consult{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,24px)}
 .consult > div{border-top:2px solid var(--fg);padding-top:20px}
-.consult h3{font-size:clamp(32px,3.4vw,48px);margin-bottom:12px}
+.consult h3{font-size:var(--h-card);margin-bottom:12px}
 .consult p{margin:0;color:var(--fg-2);max-width:46ch}
 .basics{margin-top:clamp(28px,4vw,48px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;border:1px dashed var(--line-2);border-radius:6px;padding:22px 24px}
 .basics p{margin:0;max-width:62ch;color:var(--fg-2)}
@@ -323,8 +333,17 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 .opt{min-height:44px;font:500 15px/1.25 var(--display);text-align:left;color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:10px 18px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .opt:hover{border-color:var(--fg);color:var(--fg)}
 .opt[aria-pressed="true"]{background:var(--fg);color:var(--ink);border-color:var(--fg)}
+.diag-q[hidden]{display:none}
+.picked{display:none;flex-wrap:wrap;align-items:center;gap:6px 14px;color:var(--fg);font:500 16px/1.4 var(--display)}
+.diag-q.done .opts{display:none}
+.diag-q.done .picked{display:flex}
+.diag-q.done h3{color:var(--fg-3);font-size:16px;margin:6px 0 4px}
+.change{all:unset;cursor:pointer;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2);min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:5px}
+.change:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.answer .more{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:10px}
+.answer .more a{display:inline-flex;align-items:center;min-height:44px;color:var(--fg-2);text-underline-offset:6px}
 .answer{background:var(--ink-2);border:1px solid var(--line-2);border-left:3px solid var(--cyan);border-radius:6px;padding:clamp(22px,3vw,34px)}
-.answer h3{font-size:clamp(34px,4vw,56px);margin:10px 0 14px}
+.answer h3{font-size:var(--h-card);margin:10px 0 14px}
 .answer p{margin:0 0 18px;color:var(--fg-2);max-width:60ch}
 .answer .ctas{display:flex;flex-wrap:wrap;gap:10px}
 
@@ -350,7 +369,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 /* the list */
 .list{background:var(--ink-2);border-block:1px solid var(--line)}
 .list .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end;padding-block:clamp(56px,7vw,96px)}
-.list h2{font-size:clamp(44px,6vw,88px)}
+.list h2{font-size:var(--h-sec)}
 .list p{margin:14px 0 0;color:var(--fg-2);max-width:46ch}
 .list form{display:grid;grid-template-columns:1fr auto;gap:10px}
 .list form .form-note{grid-column:1 / -1}
@@ -359,8 +378,14 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 .check{display:flex;align-items:center;gap:12px;font:400 16px/1.4 var(--read);text-transform:none;letter-spacing:0;color:var(--fg-2);min-height:44px;cursor:pointer}
 .check input{width:20px;height:20px;accent-color:var(--cyan);flex-shrink:0}
 
+@media (max-width:820px){
+  .spread .frame .play{top:10px;bottom:auto;left:10px;right:auto;padding:6px 12px 6px 6px;gap:8px;font-size:11px}
+  .spread .frame .play .dot{width:22px;height:22px}
+  .bug{top:14px;right:12px}
+}
+
 /* screening room player */
-.room{position:fixed;inset:0;z-index:80;background:rgba(5,5,7,.94);display:grid;place-items:center;padding:calc(env(safe-area-inset-top,0px) + 64px) var(--gut) calc(env(safe-area-inset-bottom,0px) + 24px)}
+.room{position:fixed;inset:0;z-index:80;background:#050507;display:grid;place-items:center;padding:calc(env(safe-area-inset-top,0px) + 64px) var(--gut) calc(env(safe-area-inset-bottom,0px) + 24px)}
 .room[hidden]{display:none}
 .room-inner{width:min(1200px,100%)}
 .room video{width:100%;max-height:72vh;background:#000;border-radius:4px}
@@ -378,7 +403,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 <header class="top" id="top">
   <div class="wrap">
     <a class="brand" href="#reel" aria-label="7 Lyons Media, back to top">
-      <img src="img/lion.png" alt="" width="34" height="34">
+      <img src="img/lion.png" alt="" width="40" height="40">
       <span class="wide">7 Lyons Media</span>
     </a>
     <ul class="nav">
@@ -418,7 +443,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
           <a class="btn" href="#work">See the work</a>
         </div>
       </div>
-      <div class="tc" aria-hidden="true"><i></i><span>REEL 2022</span><span id="tc">00:00:00:00</span></div>
+      <div class="tc" aria-hidden="true"><i></i><span>Reel 2022 &middot; 1:10</span></div>
     </div>
   </div>
 </section>
@@ -464,7 +489,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
       <div><h3 class="cap">Television &amp; film</h3><p>Unscripted series, specials and feature documentaries.</p></div>
       <div><h3 class="cap">Social</h3><p>Channels and brands built from zero, then kept growing.</p></div>
       <div><h3 class="cap">Original music</h3><p>Songs and scores written for the work, not licensed from a library.</p></div>
-      <div><h3 class="cap">Consulting &amp; training</h3><p>For marketing and media teams, led by Jay.</p></div>
+      <div><h3 class="cap">Consulting</h3><p>For marketing and media teams, with training led by Jay.</p></div>
     </div>
   </div>
 </section>
@@ -477,7 +502,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 
   <!-- 1 -->
   <article class="spread s-full">
-    <button class="frame" type="button" data-play="prison" data-preview="media/prison.mp4" aria-label="Play a clip from Professor Goes To Prison">
+    <button class="frame" type="button" data-play="prison" data-preview="media/prison.mp4">
+      <span class="sr">Play a clip from Professor Goes To Prison.</span>
       <img src="img/prison-1600.webp" srcset="img/prison-800.webp 800w, img/prison-1600.webp 1600w" sizes="100vw" alt="Grayson Boucher shoots a jumper in a prison yard while inmates and guards watch" width="1600" height="900">
       <span class="play"><span class="dot"></span>Clip 0:32</span>
     </button>
@@ -498,7 +524,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   <!-- 2 -->
   <article class="spread s-split">
     <div class="wrap">
-      <button class="frame" type="button" data-play="goodbye" data-preview="media/goodbye.mp4" aria-label="Play a clip from The Long Goodbye trailer">
+      <button class="frame" type="button" data-play="goodbye" data-preview="media/goodbye.mp4">
+      <span class="sr">Play a clip from The Long Goodbye trailer.</span>
         <img src="img/goodbye-1600.webp" srcset="img/goodbye-800.webp 800w, img/goodbye-1600.webp 1600w" sizes="(max-width:820px) 100vw, 58vw" alt="Kara Tippetts rests her head against her husband" width="1600" height="900" loading="lazy">
         <span class="bug">Netflix</span>
         <span class="play"><span class="dot"></span>Trailer 0:34</span>
@@ -520,7 +547,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   <!-- 3 -->
   <article class="spread s-split rev">
     <div class="wrap">
-      <button class="frame" type="button" data-play="grammys" data-preview="media/grammys.mp4" aria-label="Play a clip from David and Tamela Mann at the Grammys">
+      <button class="frame" type="button" data-play="grammys" data-preview="media/grammys.mp4">
+      <span class="sr">Play a clip from David and Tamela Mann at the Grammys.</span>
         <img src="img/grammys-1600.webp" srcset="img/grammys-800.webp 800w, img/grammys-1600.webp 1600w" sizes="(max-width:820px) 100vw, 58vw" alt="David Mann in the Grammy Awards audience as Tamela Mann appears on the big screen" width="1600" height="900" loading="lazy">
         <span class="play"><span class="dot"></span>Clip 0:38</span>
       </button>
@@ -539,7 +567,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 
   <!-- 4 -->
   <article class="spread s-full right">
-    <button class="frame" type="button" data-play="spotify" data-preview="media/spotify.mp4" aria-label="Play a clip from Music Happens Here">
+    <button class="frame" type="button" data-play="spotify" data-preview="media/spotify.mp4">
+      <span class="sr">Play a clip from Music Happens Here.</span>
       <img src="img/spotify-1600.webp" srcset="img/spotify-800.webp 800w, img/spotify-1600.webp 1600w" sizes="100vw" alt="The Seattle skyline and the Space Needle at dusk, Mount Rainier behind" width="1600" height="900" loading="lazy">
       <span class="play"><span class="dot"></span>Clip 0:34</span>
     </button>
@@ -556,7 +585,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   <!-- 5 -->
   <article class="spread s-split">
     <div class="wrap">
-      <button class="frame" type="button" data-play="eternity" data-preview="media/eternity.mp4" aria-label="Play a clip from Playing For Eternity">
+      <button class="frame" type="button" data-play="eternity" data-preview="media/eternity.mp4">
+      <span class="sr">Play a clip from Playing For Eternity.</span>
         <img src="img/eternity-1600.webp" srcset="img/eternity-800.webp 800w, img/eternity-1600.webp 1600w" sizes="(max-width:820px) 100vw, 58vw" alt="A championship trophy standing on the turf of an empty NFL stadium" width="1600" height="900" loading="lazy">
         <span class="play"><span class="dot"></span>Sizzle 0:34</span>
       </button>
@@ -572,7 +602,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   <!-- 6 -->
   <article class="spread s-split rev">
     <div class="wrap">
-      <button class="frame" type="button" data-play="life" data-preview="media/life.mp4" aria-label="Play a clip from My 600-lb Life">
+      <button class="frame" type="button" data-play="life" data-preview="media/life.mp4">
+      <span class="sr">Play a clip from My 600-lb Life.</span>
         <img src="img/life-1600.webp" srcset="img/life-800.webp 800w, img/life-1600.webp 1600w" sizes="(max-width:820px) 100vw, 58vw" alt="Dr. Nowzaradan in his clinic" width="1600" height="900" loading="lazy">
         <span class="play"><span class="dot"></span>Clip 0:12</span>
       </button>
@@ -589,7 +620,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   <div class="spread pair">
     <div class="wrap">
       <article>
-        <button class="frame" type="button" data-play="made" data-preview="media/made.mp4" aria-label="Play a clip from MADE">
+        <button class="frame" type="button" data-play="made" data-preview="media/made.mp4">
+      <span class="sr">Play a clip from MADE.</span>
           <img src="img/made-800.webp" alt="David Hasselhoff on a green-screen set with a young man" width="640" height="359" loading="lazy">
           <span class="bug">MTV</span>
           <span class="play"><span class="dot"></span>Clip 0:32</span>
@@ -599,7 +631,8 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
         <div class="links"><a href="https://vimeo.com/243504841" target="_blank" rel="noopener">Segment on Vimeo, 1:42 &#8599;</a></div>
       </article>
       <article>
-        <button class="frame" type="button" data-play="bros" data-preview="media/bros.mp4" aria-label="Play a clip from Lyon Bros">
+        <button class="frame" type="button" data-play="bros" data-preview="media/bros.mp4">
+      <span class="sr">Play a clip from Lyon Bros.</span>
           <img src="img/bros-1600.webp" srcset="img/bros-800.webp 800w, img/bros-1600.webp 1600w" sizes="(max-width:820px) 100vw, 45vw" alt="A school band plays meme songs in a rehearsal room" width="1600" height="900" loading="lazy">
           <span class="bug">YouTube</span>
           <span class="play"><span class="dot"></span>Clip 0:30</span>
@@ -616,7 +649,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 <section class="band" id="social" aria-labelledby="social-h">
   <div class="wrap">
     <div class="shead">
-      <h2 class="cap" id="social-h">The last three years<br>happened on social</h2>
+      <h2 class="cap" id="social-h">What we have<br>built on social</h2>
       <p>Most of what we have built recently lives on social, not television. These are the numbers.</p>
     </div>
     <div class="results">
@@ -624,7 +657,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
         <span class="fig">1.5M</span>
         <h3>Followers, built from zero</h3>
         <p>We started a current client&rsquo;s brand from nothing. It has brought them thousands of high-paying clients.</p>
-        <span class="slate">Current client &middot; name withheld</span>
+        <span class="slate">A current client, not named here</span>
       </div>
       <div class="result-tile">
         <span class="fig">69M</span>
@@ -669,22 +702,22 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
     </div>
     <div class="index-wrap">
       <table class="films">
-        <thead><tr><th scope="col">Title</th><th scope="col">Format</th><th scope="col">For</th><th scope="col">Year</th><th scope="col">Clip</th></tr></thead>
+        <thead><tr><th scope="col">Title</th><th scope="col">Format</th><th scope="col">For</th><th scope="col">Clip</th></tr></thead>
         <tbody>
-          <tr class="row" data-play="prison" data-peek="img/prison-800.webp"><td class="t">Professor Goes To Prison</td><td>Short documentary</td><td>YouTube &middot; Prison Fellowship</td><td class="n">2018</td><td><button class="go" type="button" data-play="prison">0:32</button></td></tr>
-          <tr class="row" data-play="goodbye" data-peek="img/goodbye-800.webp"><td class="t">The Long Goodbye</td><td>Feature documentary</td><td>Netflix</td><td class="n">2019</td><td><button class="go" type="button" data-play="goodbye">0:34</button></td></tr>
-          <tr class="row" data-play="grammys" data-peek="img/grammys-800.webp"><td class="t">David &amp; Tamela Mann at the Grammys</td><td>Unscripted special</td><td>TV One</td><td class="n">2017</td><td><button class="go" type="button" data-play="grammys">0:38</button></td></tr>
-          <tr class="row" data-play="spotify" data-peek="img/spotify-800.webp"><td class="t">Music Happens Here</td><td>Music documentary</td><td>Spotify</td><td class="n">&ndash;</td><td><button class="go" type="button" data-play="spotify">0:34</button></td></tr>
-          <tr class="row" data-play="eternity" data-peek="img/eternity-800.webp"><td class="t">Playing For Eternity</td><td>Episodic sports series</td><td>Sizzle reel</td><td class="n">&ndash;</td><td><button class="go" type="button" data-play="eternity">0:34</button></td></tr>
-          <tr class="row" data-play="life" data-peek="img/life-800.webp"><td class="t">My 600-lb Life</td><td>Follow documentary</td><td>TLC</td><td class="n">&ndash;</td><td><button class="go" type="button" data-play="life">0:12</button></td></tr>
-          <tr class="row" data-play="made" data-peek="img/made-800.webp"><td class="t">MADE</td><td>Unscripted series</td><td>MTV</td><td class="n">&ndash;</td><td><button class="go" type="button" data-play="made">0:32</button></td></tr>
-          <tr class="row" data-play="bros" data-peek="img/bros-800.webp"><td class="t">Lyon Bros</td><td>YouTube channel</td><td>Created &amp; produced</td><td class="n">&ndash;</td><td><button class="go" type="button" data-play="bros">0:30</button></td></tr>
+          <tr class="row" data-play="prison" data-peek="img/prison-800.webp"><td class="t">Professor Goes To Prison</td><td>Short documentary</td><td>YouTube &middot; Prison Fellowship</td><td><button class="go" type="button" data-play="prison">0:32</button></td></tr>
+          <tr class="row" data-play="goodbye" data-peek="img/goodbye-800.webp"><td class="t">The Long Goodbye</td><td>Feature documentary</td><td>Netflix</td><td><button class="go" type="button" data-play="goodbye">0:34</button></td></tr>
+          <tr class="row" data-play="grammys" data-peek="img/grammys-800.webp"><td class="t">David &amp; Tamela Mann at the Grammys</td><td>Unscripted special</td><td>TV One</td><td><button class="go" type="button" data-play="grammys">0:38</button></td></tr>
+          <tr class="row" data-play="spotify" data-peek="img/spotify-800.webp"><td class="t">Music Happens Here</td><td>Music documentary</td><td>Spotify</td><td><button class="go" type="button" data-play="spotify">0:34</button></td></tr>
+          <tr class="row" data-play="eternity" data-peek="img/eternity-800.webp"><td class="t">Playing For Eternity</td><td>Episodic sports series</td><td>Sizzle reel</td><td><button class="go" type="button" data-play="eternity">0:34</button></td></tr>
+          <tr class="row" data-play="life" data-peek="img/life-800.webp"><td class="t">My 600-lb Life</td><td>Follow documentary</td><td>TLC</td><td><button class="go" type="button" data-play="life">0:12</button></td></tr>
+          <tr class="row" data-play="made" data-peek="img/made-800.webp"><td class="t">MADE</td><td>Unscripted series</td><td>MTV</td><td><button class="go" type="button" data-play="made">0:32</button></td></tr>
+          <tr class="row" data-play="bros" data-peek="img/bros-800.webp"><td class="t">Lyon Bros</td><td>YouTube channel</td><td>Created &amp; produced</td><td><button class="go" type="button" data-play="bros">0:30</button></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
-<div class="peek" id="peek" aria-hidden="true"><img alt="" id="peekImg"></div>
+<div class="peek" id="peek" aria-hidden="true"><img alt="" id="peekImg" src="img/prison-800.webp"></div>
 
 <section class="band" id="consulting" aria-labelledby="consult-h">
   <div class="wrap">
@@ -719,6 +752,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
           <button class="opt" type="button" aria-pressed="false" data-v="c">We have one project: a film, a series or a campaign</button>
           <button class="opt" type="button" aria-pressed="false" data-v="d">Our team needs to get better at this itself</button>
         </div>
+        <div class="picked"><span></span><button class="change" type="button">Change</button></div>
       </div>
       <div class="diag-q">
         <span class="slate">Question 2 of 3</span>
@@ -729,6 +763,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
           <button class="opt" type="button" aria-pressed="false" data-v="c">Freelancers, case by case</button>
           <button class="opt" type="button" aria-pressed="false" data-v="d">Nobody, really</button>
         </div>
+        <div class="picked"><span></span><button class="change" type="button">Change</button></div>
       </div>
       <div class="diag-q">
         <span class="slate">Question 3 of 3</span>
@@ -739,6 +774,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
           <button class="opt" type="button" aria-pressed="false" data-v="c">A finished film or series we&rsquo;re proud of</button>
           <button class="opt" type="button" aria-pressed="false" data-v="d">A team that knows what it&rsquo;s doing without us</button>
         </div>
+        <div class="picked"><span></span><button class="change" type="button">Change</button></div>
       </div>
       <div class="answer" id="answer" hidden aria-live="polite">
         <span class="slate">Our read</span>
@@ -786,7 +822,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
       </details>
       <details>
         <summary>How long until our videos go viral?</summary>
-        <p>Nobody can honestly promise viral. What we can do is find out why your content isn&rsquo;t working and make things people want to watch and share. Our record is on this page: 69 million views on one short documentary, and one client&rsquo;s brand taken from zero to 1.5 million followers.</p>
+        <p>Nobody can honestly promise viral. What we can do is find out why your content isn&rsquo;t working and make things people want to watch and share. The work and the numbers on this page show what that looks like when it lands.</p>
       </details>
       <details>
         <summary>We were told to get better at social. Where do we start?</summary>
@@ -830,10 +866,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   <div class="wrap">
     <div>
       <h2 class="cap" id="contact-h">Start a project</h2>
-      <div class="doors">
-        <div class="door"><h3>A project</h3><p>A series, a film, a channel or a campaign. Tell us what it is and when it needs to exist.</p></div>
-        <div class="door"><h3>Jay to speak or train</h3><p>Tell us the audience, your preferred dates and whether it is on site or remote. We reply with what is open, so there is no back and forth.</p></div>
-      </div>
+      <p class="contact-lede">Tell us what it is and when it needs to exist. For speaking or training, add your preferred dates and we will reply with what is open, so there is no back and forth.</p>
       <div class="mail">
         <code id="mailAddr">sofia@7lyonsmedia.com</code>
         <button type="button" id="copyMail">Copy</button>
@@ -855,7 +888,6 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
       </div>
       <label for="f-dates" id="datesRow" hidden>Preferred dates<input id="f-dates" name="dates" placeholder="For example: week of 10 November, or any Tuesday in December"></label>
       <label for="f-msg">What do you need?<textarea id="f-msg" name="message" required></textarea></label>
-      <label class="check" for="f-list"><input type="checkbox" id="f-list" name="list">Add me to the list for Jay&rsquo;s notes</label>
       <div><button class="btn btn-hot" type="submit">Send</button></div>
       <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
     </form>
@@ -880,7 +912,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
 
 <footer>
   <div class="wrap">
-    <p class="billing"><b>7 Lyons Media</b> <small>founded <br>by</small> <b>Jay Lyons</b> <small>and</small> <b>Sofia J. Lyons</b> <small>work <br>for</small> Netflix&nbsp;&middot; Spotify&nbsp;&middot; YouTube&nbsp;&middot; TLC&nbsp;&middot; MTV&nbsp;&middot; CBS&nbsp;&middot; TV&nbsp;One <small>based <br>in</small> Los Angeles</p>
+    <p class="billing"><b>7 Lyons Media</b> <small>founded <br>by</small> <b>Jay Lyons</b> <small>and</small> <b>Sofia J. Lyons</b> <small>work <br>on</small> Netflix&nbsp;&middot; Spotify&nbsp;&middot; YouTube&nbsp;&middot; TLC&nbsp;&middot; MTV&nbsp;&middot; CBS&nbsp;&middot; TV&nbsp;One <small>based <br>in</small> Los Angeles</p>
     <div class="foot">
       <span>&copy; 2026 7 Lyons Media. All footage &copy; its owners.</span>
       <span>Designed by <a href="https://station.solutions/" target="_blank" rel="noopener">Station.Solutions</a></span>
@@ -921,8 +953,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   addEventListener('scroll',onScroll,{passive:true});onScroll();
 
   /* hero reel + timecode */
-  var hero=document.getElementById('heroReel'),tc=document.getElementById('tc');
-  function pad(n){return (n<10?'0':'')+n}
+  var hero=document.getElementById('heroReel');
   /* phones get a vertical, silent 3.9 MB cut; laptops get the full 1080p reel (it opens on a Netflix bumper, so start at 0.8 s) */
   var phone=window.matchMedia&&matchMedia('(max-width: 700px)').matches;
   hero.poster=phone?hero.getAttribute('data-phone-poster'):hero.poster;
@@ -931,11 +962,7 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
   var START=phone?0:0.8;
   hero.addEventListener('ended',function(){hero.currentTime=START;var p=hero.play();if(p&&p.catch)p.catch(function(){});});
   if(!reduce){var p=hero.play();if(p&&p.catch)p.catch(function(){});}
-  (function tick(){
-    var t=hero.currentTime||0,f=Math.floor((t%1)*24),s=Math.floor(t);
-    tc.textContent='00:'+pad(Math.floor(s/60))+':'+pad(s%60)+':'+pad(f);
-    requestAnimationFrame(tick);
-  })();
+
 
   /* screening room */
   var room=document.getElementById('room'),rv=document.getElementById('roomVideo'),lastFocus=null;
@@ -1026,18 +1053,29 @@ footer{margin-top:0;border-top:1px solid var(--line);padding-block:clamp(48px,6v
     d:{t:'Your team needs training',b:'If the goal is a team that can do this without outside help, the fastest route is time with Jay: a keynote to reset how the team thinks, or a training day working on your own content.',go:[['Request dates with Jay','#contact','k-speak'],['What Jay covers','#speaking']]}
   };
   var WHO={a:'Your in-house team is where this starts, so we would work alongside them.',b:'We can work with your agency or around it, whichever gets the better result.',c:'Freelancers case by case usually means nobody owns the whole picture. We would.',d:'If nobody makes it today, we can make it for you.'};
-  document.querySelectorAll('.opts').forEach(function(g){
+  var QS=[].slice.call(document.querySelectorAll('.diag-q'));
+  QS.forEach(function(q,i){if(i>0)q.hidden=true;});
+  function showAnswer(){
+    var r=ROUTES[picks[0]],box=document.getElementById('answer');
+    document.getElementById('a-title').textContent=r.t;
+    document.getElementById('a-body').textContent=r.b+' '+WHO[picks[1]];
+    var n=document.getElementById('a-next');n.innerHTML='';
+    var main=document.createElement('a');main.className='btn btn-hot';main.href=r.go[0][1];main.textContent=r.go[0][0];if(r.go[0][2])main.setAttribute('data-kind',r.go[0][2]);n.appendChild(main);
+    var more=document.createElement('div');more.className='more';
+    r.go.slice(1).concat([['Not ready? Join the list','#list']]).forEach(function(x){var a=document.createElement('a');a.href=x[1];a.textContent=x[0];more.appendChild(a);});
+    n.appendChild(more);box.hidden=false;
+  }
+  QS.forEach(function(q,i){
+    var g=q.querySelector('.opts');
     g.addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b)return;
       g.querySelectorAll('.opt').forEach(function(o){o.setAttribute('aria-pressed',o===b)});
-      picks[+g.getAttribute('data-q')]=b.getAttribute('data-v');
-      if(picks.every(Boolean)){var r=ROUTES[picks[0]],box=document.getElementById('answer');
-        document.getElementById('a-title').textContent=r.t;
-        document.getElementById('a-body').textContent=r.b+' '+WHO[picks[1]];
-        var n=document.getElementById('a-next');n.innerHTML='';
-        r.go.concat([['Not ready? Join the list','#list']]).forEach(function(x,i){var a=document.createElement('a');a.className='btn'+(i===0?' btn-hot':'');a.href=x[1];a.textContent=x[0];if(x[2])a.setAttribute('data-kind',x[2]);n.appendChild(a);});
-        box.hidden=false;
-      }
+      picks[i]=b.getAttribute('data-v');
+      q.querySelector('.picked span').textContent=b.textContent;q.classList.add('done');
+      var next=QS.slice(i+1).filter(function(x,k){return !picks[i+1+k];})[0];
+      if(next){next.hidden=false;var f=next.querySelector('.opt');if(f)f.focus({preventScroll:true});}
+      else if(picks.every(Boolean))showAnswer();
     });
+    q.querySelector('.change').addEventListener('click',function(){q.classList.remove('done');var f=q.querySelector('.opt[aria-pressed="true"]')||q.querySelector('.opt');f.focus();});
   });
 
   /* the list: validates, then says plainly that it is not connected yet */
